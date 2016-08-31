@@ -4,6 +4,7 @@ using Orator.Models.Chats;
 using Orator.Models.Users;
 using Orator.Models.Messages;
 using System.Linq;
+using System.Configuration;
 
 namespace Orator.DB
 {
@@ -11,7 +12,7 @@ namespace Orator.DB
 	{
 
 		//TODO use configs
-		public DatabaseContext() : base("Server= ServerName; Database=DbName;User Id = UserName; Password= UserPassword;") {}
+		public DatabaseContext() : base(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString) {}
 
 		public DbSet<Chat> Chats { get; set; }
 		public DbSet<Message> Messages { get; set; }
