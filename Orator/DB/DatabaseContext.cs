@@ -10,8 +10,6 @@ namespace Orator.DB
 {
 	public class DatabaseContext :DbContext
 	{
-
-		//TODO use configs
 		public DatabaseContext() : base(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString) {}
 
 		public DbSet<Chat> Chats { get; set; }

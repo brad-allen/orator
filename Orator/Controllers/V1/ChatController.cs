@@ -13,7 +13,7 @@ namespace Orator.Controllers.V1
 		[Route("{id:int}")]
 		public IHttpActionResult Get(int id)
 		{
-			if (!IsUserAuthenticated) return Unauthorized();
+			if (!HasValidCookie) return Unauthorized();
 			var chatConnections = DBContext.GetChatConnectionsByUserId(CurrentUserId);
 			if (!chatConnections.Any(i => i.ChatId == id)) return BadRequest();
 			
@@ -28,7 +28,7 @@ namespace Orator.Controllers.V1
 		[Route("{chatId:int}/messages")]
 		public IHttpActionResult GetMessages(int chatId)
 		{
-			if (!IsUserAuthenticated) return Unauthorized();
+			if (!HasValidCookie) return Unauthorized();
 			var chatConnections = DBContext.GetChatConnectionsByUserId(CurrentUserId);
 			if (!chatConnections.Any(i => i.ChatId == chatId)) return BadRequest();
 			
@@ -42,7 +42,7 @@ namespace Orator.Controllers.V1
 		[Route("{chatId:int}/users")]
 		public IHttpActionResult GetUsers(int chatId)
 		{
-			if (!IsUserAuthenticated) return Unauthorized();
+			if (!HasValidCookie) return Unauthorized();
 			var chatConnections = DBContext.GetChatConnectionsByUserId(CurrentUserId);
 			if (!chatConnections.Any(i => i.ChatId == chatId)) return BadRequest();
 			
@@ -56,7 +56,7 @@ namespace Orator.Controllers.V1
 		[Route("")]
 		public IHttpActionResult Create(CreateChatRequest request)
 		{
-			if (!IsUserAuthenticated) return Unauthorized();
+			if (!HasValidCookie) return Unauthorized();
 			if (!ModelState.IsValid) return BadRequest();
 
 			Chat chat = new Chat { AllowHtml = request.AllowHtml, Title = request.Title, };
@@ -73,7 +73,7 @@ namespace Orator.Controllers.V1
 		[Route("{chatId:int}/invite/{userId:int}")]
 		public IHttpActionResult InviteToChat(int chatId, int userId)
 		{
-			if (!IsUserAuthenticated) return Unauthorized();
+			if (!HasValidCookie) return Unauthorized();
 			var chatConnections = DBContext.GetChatConnectionsByUserId(CurrentUserId);
 			var currentConnections = DBContext.GetChatConnectionsByUserId(userId);
 			if (!chatConnections.Any(i => i.ChatId == chatId)) return BadRequest();
@@ -94,7 +94,7 @@ namespace Orator.Controllers.V1
 		[Route("{chatId:int}/deny")]
 		public IHttpActionResult DenyChatConnection(int chatId)
 		{
-			if (!IsUserAuthenticated) return Unauthorized();
+			if (!HasValidCookie) return Unauthorized();
 			var chatConnections = DBContext.GetChatConnectionsByUserId(CurrentUserId);
 			if (!chatConnections.Any(i => i.ChatId == chatId && i.Status == ConnectionStatus.Invited)) return BadRequest();
 
@@ -108,7 +108,7 @@ namespace Orator.Controllers.V1
 		[Route("{chatId:int}/accept")]
 		public IHttpActionResult AcceptChatConnection(int chatId)
 		{
-			if (!IsUserAuthenticated) return Unauthorized();
+			if (!HasValidCookie) return Unauthorized();
 			var chatConnections = DBContext.GetChatConnectionsByUserId(CurrentUserId);
 			if (!chatConnections.Any(i => i.ChatId == chatId && i.Status == ConnectionStatus.Invited)) return BadRequest();
 
@@ -121,7 +121,7 @@ namespace Orator.Controllers.V1
 		[Route("{chatId:int}/new_message")]
 		public IHttpActionResult Create(int chatId, CreateMessageRequest request)
 		{ 
-			if (!IsUserAuthenticated) return Unauthorized();
+			if (!HasValidCookie) return Unauthorized();
 			var chatConnections = DBContext.GetChatConnectionsByUserId(CurrentUserId);
 			if (!chatConnections.Any(i => i.ChatId == request.ChatId && i.Status == ConnectionStatus.Accepted) || request.ChatId != chatId) return BadRequest();
 			if (!ModelState.IsValid) return BadRequest();

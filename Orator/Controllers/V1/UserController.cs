@@ -12,7 +12,7 @@ namespace Orator.Controllers.V1
 		[Route("")]
 		public IHttpActionResult Get()
 		{
-			if (!IsUserAuthenticated) return Unauthorized();
+			if (!HasValidCookie) return Unauthorized();
 
 			var currentModel = DBContext.GetUserResponse(CurrentUserId);
 
@@ -26,7 +26,7 @@ namespace Orator.Controllers.V1
 		[Route("{id:int}")]
 		public IHttpActionResult Update(int id, UpdateUserRequest request)
 		{
-			if (!IsUserAuthenticated) return Unauthorized();
+			if (!HasValidCookie) return Unauthorized();
 			if (CurrentUserId != id) return BadRequest();
 			if(!ModelState.IsValid) return BadRequest();
 			
@@ -48,7 +48,7 @@ namespace Orator.Controllers.V1
 		[Route("chats")]
 		public IHttpActionResult UserChats()
 		{
-			if (!IsUserAuthenticated) return Unauthorized();
+			if (!HasValidCookie) return Unauthorized();
 
 			return Ok(ToJsonString(DBContext.GetUserChats(CurrentUserId)));
 		}
@@ -57,7 +57,7 @@ namespace Orator.Controllers.V1
 		[Route("chat_requests")]
 		public IHttpActionResult UserChatRequests()
 		{
-			if (!IsUserAuthenticated) return Unauthorized();
+			if (!HasValidCookie) return Unauthorized();
 
 			return Ok(ToJsonString(DBContext.GetChatRequests(CurrentUserId)));
 		}

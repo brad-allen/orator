@@ -1,8 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
-using Orator.Models.Users;
-using Orator.Models.Messages;
 
 namespace Orator.Models.Chats
 {

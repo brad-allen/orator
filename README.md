@@ -12,13 +12,14 @@
 	provided in order to create chats and messages, invite people to chats, accept and deny chat requests, view chats you are a part of,
 	and view users and messages in chats.
 	
-	Uses JSON for data transfer - POST request body eg:
+	Uses JSON for data transfer
+	POST request body example:
 	
 	{
 	 "Username":"NewUserName",
-	 "FirstName:"Brad",
-	 "LastName:"Allen",
-	 "Bio:"I like this and that..."
+	 "FirstName":"Brad",
+	 "LastName":"Allen",
+	 "Bio":"I like this and that..."
 	}
 	
 ## API User Endpoints:

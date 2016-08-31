@@ -16,7 +16,7 @@ namespace Orator.Controllers
 		protected int CurrentUserId { get; private set; }
 		protected string CurrentUsername { get; private set; }
 
-		public virtual bool IsUserAuthenticated => CheckCurrentUserCookie() && User.Identity.IsAuthenticated;
+		public virtual bool HasValidCookie => CheckCurrentUserCookie();
 		public string AuthName => User.Identity.Name;
 		
 		public BaseController()
@@ -54,7 +54,7 @@ namespace Orator.Controllers
 			if (AuthName != null)
 			{
 				var user = DBContext.GetUserByAuthId(AuthName);
-				if(user != null)
+				if(user?.Username != null)
 				{
 					CreateUserCookie(user.Id, user.Username, user.Email);
 					CurrentUsername = user.Username;

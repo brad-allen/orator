@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using Orator.Models.Chats;
 
 namespace Orator.Models.Users
 {

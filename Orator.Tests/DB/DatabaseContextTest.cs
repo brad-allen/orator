@@ -1,9 +1,5 @@
-﻿using Orator.Models.Messages;
-using System.ComponentModel.DataAnnotations;
-using Xunit;
-using System.Collections.Generic;
-
-namespace MakeMusicAdmin.Tests.Models
+﻿
+namespace MakeMusicAdmin.Tests.DB
 {
 	public class DatabaseContextTest
 	{

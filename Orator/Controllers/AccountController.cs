@@ -434,7 +434,6 @@ namespace Orator.Controllers
 			userCookie["email"] = email; //TODO for now email is also username
 			userCookie.Expires = DateTime.Now.AddDays(1);
 			Response.Cookies.Add(userCookie);
-
 			//TODO encrypt
 		}
 

@@ -5,7 +5,7 @@ using Moq;
 using Orator.DB;
 using System.Web.Http.Results;
 
-namespace MakeMusicAdmin.Tests.Models
+namespace MakeMusicAdmin.Tests.Controllers
 {
 	public class UserControllerTest
 	{
@@ -14,12 +14,12 @@ namespace MakeMusicAdmin.Tests.Models
 
 		public class TestUserController :UserController
 		{
-			bool _isUserAuthenticated = true;
+			bool _hasValidCookie = true;
 			public void OverrideAuthentication(bool isAuthed)
 			{
-				_isUserAuthenticated = isAuthed;
+				_hasValidCookie = isAuthed;
 			}
-			public override bool IsUserAuthenticated => _isUserAuthenticated;
+			public override bool HasValidCookie => _hasValidCookie;
 		}
 
 		public UserControllerTest()
@@ -46,7 +46,7 @@ namespace MakeMusicAdmin.Tests.Models
 		}
 		
 		[Fact]
-		public void GetUser_UnauthenticedUser_UnauthorizedResponse()
+		public void GetUser_HasNoCookie_UnauthorizedResponse()
 		{
 			_controller.OverrideAuthentication(false);
 

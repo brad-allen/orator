@@ -16,20 +16,20 @@
 			Once you have logged in through the MVC portion of the application, you are authorized to access the API routes
 			provided in order to create chats and messages, invite people to chats, accept and deny chat requests, view chats you are a part of,
 			and view users and messages in chats.
-			<br />
-			Uses JSON for data transfer - POST request body eg:
-			<br />
+			<br /><br />
+			Uses JSON for data transfer
+			<br />POST request body example:
 			<br />{
 			<br /> "Username":"New Name",
-			<br /> "FirstName:"Brad",
-			<br /> "LastName:"Allen",
-			<br /> "Bio:"I like this and that..."
+			<br /> "FirstName":"Brad",
+			<br /> "LastName":"Allen",
+			<br /> "Bio":"I like this and that..."
 			<br />}
 			<br />
 		</p>
 		<p>
 			API Endpoints:<br />
-			* Users<br />
+			Users<br />
 			GET http://localhost:53437/v1/user
 			<br />Returns basic information of the logged in user
 			<br /><br />
@@ -47,7 +47,7 @@
 			<br />Gets the chats requests of the current user
 			<br /><br />
 
-			* Chats
+			Chats
 			<br />
 			GET http://localhost:53437/v1/chat/{chatId}
 			<br />Get the chat information - no messages or users
