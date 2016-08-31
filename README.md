@@ -1,1 +1,74 @@
 # orator
+		<h2>Getting started</h2>
+		<p>
+			Register an account or sign in.
+			<br />
+			Once you have logged in through the MVC portion of the application, you are authorized to access the API routes
+			provided in order to create chats and messages, invite people to chats, accept and deny chat requests, view chats you are a part of,
+			and view users and messages in chats.
+			<br />
+			Uses JSON for data transfer - POST request body eg:
+			<br />
+			<br />{
+			<br /> "Username":"New Name",
+			<br /> "FirstName:"Brad",
+			<br /> "LastName:"Allen",
+			<br /> "Bio:"I like this and that..."
+			<br />}
+			<br />
+		</p>
+		<p>
+			API Endpoints:<br />
+			* Users<br />
+			GET http://localhost:53437/v1/user
+			<br />Returns basic information of the logged in user
+			<br /><br />
+
+			POST or PUT http://localhost:53437/v1/user
+			<br />Update the user profile information...
+			<br />Body Fields: Username, FirstName, LastName, Bio
+			<br /><br />
+
+			GET http://localhost:53437/v1/user/chats
+			<br />Gets the chats of the current user
+			<br /><br />
+
+			GET http://localhost:53437/v1/user/chat_requests
+			<br />Gets the chats requests of the current user
+			<br /><br />
+
+			* Chats
+			<br />
+			GET http://localhost:53437/v1/chat/{chatId}
+			<br />Get the chat information - no messages or users
+			<br /><br />
+
+			GET http://localhost:53437/v1/chat/{chatId}/messages
+			<br />Get the chat messsages
+			<br /><br />
+
+			GET http://localhost:53437/v1/chat/{chatId}/users
+			<br />Get the users in the specified chat
+			<br /><br />
+
+			POST http://localhost:53437/v1/chat
+			<br />Create a new chat
+			<br />Body Fields: Title, AllowHtml
+			<br /><br />
+
+			POST http://localhost:53437/v1/chat/{chatId}/invite/:{userId}
+			<br />Invite someone to the chat
+			<br /><br />
+
+			POST or PUT  http://localhost:53437/v1/chat/{chatId}/deny
+			<br />Deny the chat invite for the current user
+			<br /><br />
+
+			POST or PUT http://localhost:53437/v1/chat/{chatId}/accept
+			<br />Accept the chat invite for the current user
+			<br /><br />
+
+			POST http://localhost:53437/v1/chat/{chatId}/new_message
+			<br />Create a message in the acccepted chat
+			<br />Body Fields: ChatId, UserId, Content
+			<br /><br />
