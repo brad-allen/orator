@@ -1,4 +1,10 @@
 # orator
+
+Running the app
+	You'll need to setup and connect a SQL Database in order to run the application.  In SQL Server, you may need to create an 'Orator' database (depending on how you connect) but EF will create the rest of the tables on first use.
+	Other than that, you should be able to rebuild the app and run it as is.
+
+Using the app
 		Getting started
 		
 			Register an account or sign in.
@@ -10,7 +16,7 @@
 			Uses JSON for data transfer - POST request body eg:
 			
 			{
-			 "Username":"New Name",
+			 "Username":"NewUserName",
 			 "FirstName:"Brad",
 			 "LastName:"Allen",
 			 "Bio:"I like this and that..."
