@@ -9,14 +9,12 @@ namespace Orator.Controllers.V1
 	{
 		
 		[HttpGet]
-		[Route("{id:int}")]
-		public IHttpActionResult Get(int id)
+		[Route("")]
+		public IHttpActionResult Get()
 		{
 			if (!IsUserAuthenticated) return Unauthorized();
-			if (CurrentUserId != id) return BadRequest();
 
-
-			var currentModel = DBContext.GetUserResponse(id);
+			var currentModel = DBContext.GetUserResponse(CurrentUserId);
 
 			if (currentModel == null) return NotFound();
 			
@@ -30,7 +28,8 @@ namespace Orator.Controllers.V1
 		{
 			if (!IsUserAuthenticated) return Unauthorized();
 			if (CurrentUserId != id) return BadRequest();
-
+			if(!ModelState.IsValid) return BadRequest();
+			
 			User currentModel = DBContext.GetFullUser(id);
 
 			if (currentModel == null) return NotFound();
@@ -46,23 +45,21 @@ namespace Orator.Controllers.V1
 		}
 
 		[HttpGet]
-		[Route("{userId:int}/chats")]
-		public IHttpActionResult UserChats(int userId)
+		[Route("chats")]
+		public IHttpActionResult UserChats()
 		{
 			if (!IsUserAuthenticated) return Unauthorized();
-			if (CurrentUserId != userId) return BadRequest();
 
-			return Ok(ToJsonString(DBContext.GetUserChats(userId)));
+			return Ok(ToJsonString(DBContext.GetUserChats(CurrentUserId)));
 		}
 
 		[HttpGet]
-		[Route("{userId:int}/chat_requests")]
-		public IHttpActionResult UserChatRequests(int userId)
+		[Route("chat_requests")]
+		public IHttpActionResult UserChatRequests()
 		{
 			if (!IsUserAuthenticated) return Unauthorized();
-			if (CurrentUserId != userId) return BadRequest();
 
-			return Ok(ToJsonString(DBContext.GetChatRequests(userId)));
+			return Ok(ToJsonString(DBContext.GetChatRequests(CurrentUserId)));
 		}
 
 	}

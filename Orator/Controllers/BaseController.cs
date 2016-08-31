@@ -10,21 +10,20 @@ namespace Orator.Controllers
 {
 	public class BaseController : ApiController
 	{
-		protected DatabaseContext DBContext { get; private set; }
+		public virtual DatabaseContext DBContext { get; set; }
 
 		protected string CurrentEmail { get; private set; }
 		protected int CurrentUserId { get; private set; }
 		protected string CurrentUsername { get; private set; }
 
-		public bool IsUserAuthenticated => CheckCurrentUserCookie() && User.Identity.IsAuthenticated;
+		public virtual bool IsUserAuthenticated => CheckCurrentUserCookie() && User.Identity.IsAuthenticated;
 		public string AuthName => User.Identity.Name;
 		
 		public BaseController()
 		{
 			DBContext = new DatabaseContext();//TODO add IoC layer
 		}
-
-
+		
 		public string ToJsonString(object currentModel)
 		{
 			return new JavaScriptSerializer().Serialize(currentModel);

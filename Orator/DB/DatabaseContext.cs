@@ -11,14 +11,14 @@ namespace Orator.DB
 	{
 
 		//TODO use configs
-		public DatabaseContext() : base("Server= TARDIS; Database=orator;User Id = ds_user; Password=H0wN0wBr0wnC0w?;") {}
+		public DatabaseContext() : base("Server= ServerName; Database=DbName;User Id = UserName; Password= UserPassword;") {}
 
 		public DbSet<Chat> Chats { get; set; }
 		public DbSet<Message> Messages { get; set; }
 		public DbSet<User> Users { get; set; }
 		public DbSet<ChatConnection> ChatConnections { get; set; }
 
-		public UserResponse GetUserResponse(int id)
+		public virtual UserResponse GetUserResponse(int id)
 		{
 			using (var db = new DatabaseContext())
 			{

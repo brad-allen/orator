@@ -3,29 +3,84 @@
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>Orator</h1>
+    <p class="lead">A simple chat tool</p>
+    <p><a href="https://github.com/brad-allen/orator" class="btn btn-primary btn-lg">View on Github &raquo;</a></p>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+		<h2>Getting started</h2>
+		<p>
+			Register an account or sign in.
+			<br />
+			Once you have logged in through the MVC portion of the application, you are authorized to access the API routes
+			provided in order to create chats and messages, invite people to chats, accept and deny chat requests, view chats you are a part of,
+			and view users and messages in chats.
+			<br />
+			Uses JSON for data transfer - POST request body eg:
+			<br />
+			<br />{
+			<br /> "Username":"New Name",
+			<br /> "FirstName:"Brad",
+			<br /> "LastName:"Allen",
+			<br /> "Bio:"I like this and that..."
+			<br />}
+			<br />
+		</p>
+		<p>
+			API Endpoints:<br />
+			* Users<br />
+			GET http://localhost:53437/v1/user
+			<br />Returns basic information of the logged in user
+			<br /><br />
+
+			POST or PUT http://localhost:53437/v1/user
+			<br />Update the user profile information...
+			<br />Body Fields: Username, FirstName, LastName, Bio
+			<br /><br />
+
+			GET http://localhost:53437/v1/user/chats
+			<br />Gets the chats of the current user
+			<br /><br />
+
+			GET http://localhost:53437/v1/user/chat_requests
+			<br />Gets the chats requests of the current user
+			<br /><br />
+
+			* Chats
+			<br />
+			GET http://localhost:53437/v1/chat/{chatId}
+			<br />Get the chat information - no messages or users
+			<br /><br />
+
+			GET http://localhost:53437/v1/chat/{chatId}/messages
+			<br />Get the chat messsages
+			<br /><br />
+
+			GET http://localhost:53437/v1/chat/{chatId}/users
+			<br />Get the users in the specified chat
+			<br /><br />
+
+			POST http://localhost:53437/v1/chat
+			<br />Create a new chat
+			<br />Body Fields: Title, AllowHtml
+			<br /><br />
+
+			POST http://localhost:53437/v1/chat/{chatId}/invite/:{userId}
+			<br />Invite someone to the chat
+			<br /><br />
+
+			POST or PUT  http://localhost:53437/v1/chat/{chatId}/deny
+			<br />Deny the chat invite for the current user
+			<br /><br />
+
+			POST or PUT http://localhost:53437/v1/chat/{chatId}/accept
+			<br />Accept the chat invite for the current user
+			<br /><br />
+
+			POST http://localhost:53437/v1/chat/{chatId}/new_message
+			<br />Create a message in the acccepted chat
+			<br />Body Fields: ChatId, UserId, Content
+			<br /><br />
+
 </div>

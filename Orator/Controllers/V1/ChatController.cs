@@ -57,6 +57,7 @@ namespace Orator.Controllers.V1
 		public IHttpActionResult Create(CreateChatRequest request)
 		{
 			if (!IsUserAuthenticated) return Unauthorized();
+			if (!ModelState.IsValid) return BadRequest();
 
 			Chat chat = new Chat { AllowHtml = request.AllowHtml, Title = request.Title, };
 
@@ -88,6 +89,7 @@ namespace Orator.Controllers.V1
 			return Ok(ToJsonString(DBContext.CreateChatRequest(chatConnection)));
 		}
 
+		[HttpPut]
 		[HttpPost]
 		[Route("{chatId:int}/deny")]
 		public IHttpActionResult DenyChatConnection(int chatId)
@@ -101,6 +103,7 @@ namespace Orator.Controllers.V1
 			return Ok();
 		}
 
+		[HttpPut]
 		[HttpPost]
 		[Route("{chatId:int}/accept")]
 		public IHttpActionResult AcceptChatConnection(int chatId)
@@ -121,6 +124,7 @@ namespace Orator.Controllers.V1
 			if (!IsUserAuthenticated) return Unauthorized();
 			var chatConnections = DBContext.GetChatConnectionsByUserId(CurrentUserId);
 			if (!chatConnections.Any(i => i.ChatId == request.ChatId && i.Status == ConnectionStatus.Accepted) || request.ChatId != chatId) return BadRequest();
+			if (!ModelState.IsValid) return BadRequest();
 
 			Message message = new Message { ChatId = request.ChatId, UserId = request.UserId, Content = request.Content };
 

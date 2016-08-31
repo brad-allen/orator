@@ -8,7 +8,7 @@ namespace Orator.Models.Messages
 		[Required, Range(1, int.MaxValue)]
 		public int ChatId { get; set; }
 
-		[Required]
+		[Required, Range(1, int.MaxValue)]
 		public int UserId { get; set; }
 		
 		[Required, StringLength(2000), MinLength(1)]
