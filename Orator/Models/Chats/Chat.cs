@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orator.Models.Chats
 {
@@ -19,6 +20,8 @@ namespace Orator.Models.Chats
 
 		public DateTime CreatedAt { get; set; }
 
+
+		[Index]
 		public int CreatedBy { get; set; }
 		
 	}

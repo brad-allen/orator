@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using Orator.Models.Chats;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orator.Models.Messages
 {
@@ -8,10 +8,10 @@ namespace Orator.Models.Messages
 	{
 		public int Id { get; set; }
 		
-		[Required]
+		[Required, Index]
 		public int ChatId { get; set; }
 		
-		[Required]
+		[Required, Index]
 		public int UserId { get; set; }
 		
 		[Required]

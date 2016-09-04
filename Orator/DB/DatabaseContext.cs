@@ -5,12 +5,67 @@ using Orator.Models.Users;
 using Orator.Models.Messages;
 using System.Linq;
 using System.Configuration;
+using System.Data.Entity.Infrastructure.Annotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orator.DB
 {
 	public class DatabaseContext :DbContext
 	{
 		public DatabaseContext() : base(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString) {}
+
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		{
+			modelBuilder.Entity<Chat>()
+				.Property(e => e.CreatedBy)
+				.HasColumnAnnotation(
+					"Chat_CreatedBy_IDX",
+					new IndexAnnotation(new IndexAttribute()));
+
+			modelBuilder.Entity<Message>()
+				.Property(e => e.ChatId)
+				.HasColumnAnnotation(
+					"Message_ChatId_IDX",
+					new IndexAnnotation(new IndexAttribute()));
+			
+			modelBuilder.Entity<Message>()
+				.Property(e => e.UserId)
+				.HasColumnAnnotation(
+					"Message_UserId_IDX",
+					new IndexAnnotation(new IndexAttribute()));
+			
+			modelBuilder.Entity<User>()
+				.Property(e => e.AuthId)
+				.HasColumnAnnotation(
+					"User_AuthId_IDX",
+					new IndexAnnotation(new IndexAttribute()));
+
+			modelBuilder.Entity<User>()
+				.Property(e => e.Username)
+				.HasColumnAnnotation(
+					"User_Username_IDX",
+					new IndexAnnotation(new IndexAttribute()));
+
+			modelBuilder.Entity<User>()
+				.Property(e => e.FirstName)
+				.HasColumnAnnotation(
+					"User_FirstName_IDX",
+					new IndexAnnotation(new IndexAttribute()));
+
+			modelBuilder.Entity<User>()
+				.Property(e => e.LastName)
+				.HasColumnAnnotation(
+					"User_LastName_IDX",
+					new IndexAnnotation(new IndexAttribute()));
+
+			modelBuilder.Entity<User>()
+				.Property(e => e.Email)
+				.HasColumnAnnotation(
+					"User_Email_IDX",
+					new IndexAnnotation(new IndexAttribute()));
+
+			base.OnModelCreating(modelBuilder);
+		}
 
 		public DbSet<Chat> Chats { get; set; }
 		public DbSet<Message> Messages { get; set; }
@@ -268,3 +323,4 @@ namespace Orator.DB
 		}
 	}
 }
+ 
