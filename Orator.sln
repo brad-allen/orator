@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orator", "Orator\Orator.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orator.Tests", "Orator.Tests\Orator.Tests.csproj", "{5B559EB0-3850-4726-9124-7D0AEA08C5DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryCache", "..\..\MemoryCache\MemoryCache\MemoryCache.csproj", "{D5AE0415-00CB-428C-A517-99D0966EFF6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryCache.Tests", "..\..\MemoryCache\MemoryCache.Tests\MemoryCache.Tests.csproj", "{B711E80A-355A-49BE-9AB0-D754480D2B4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{5B559EB0-3850-4726-9124-7D0AEA08C5DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B559EB0-3850-4726-9124-7D0AEA08C5DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B559EB0-3850-4726-9124-7D0AEA08C5DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5AE0415-00CB-428C-A517-99D0966EFF6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5AE0415-00CB-428C-A517-99D0966EFF6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5AE0415-00CB-428C-A517-99D0966EFF6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5AE0415-00CB-428C-A517-99D0966EFF6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B711E80A-355A-49BE-9AB0-D754480D2B4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B711E80A-355A-49BE-9AB0-D754480D2B4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B711E80A-355A-49BE-9AB0-D754480D2B4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B711E80A-355A-49BE-9AB0-D754480D2B4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
